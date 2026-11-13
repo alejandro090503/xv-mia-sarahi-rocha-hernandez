@@ -8,7 +8,7 @@
 <meta property="og:title" content="XV A&ntilde;os de Mia Sarahi &middot; 17 Diciembre 2026">
 <meta property="og:description" content="Te espero para celebrar mis XV a&ntilde;os &middot; Monterrey, N.L. &middot; 17 de diciembre de 2026">
 <meta property="og:url" content="https://xv-mia-sarahi-rocha-hernandez.vercel.app">
-<meta property="og:image" content="https://xv-mia-sarahi-rocha-hernandez.vercel.app/og-image.jpg?v=1">
+<meta property="og:image" content="https://xv-mia-sarahi-rocha-hernandez.vercel.app/og-image.jpg?v=2">
 <meta property="og:image:alt" content="XV A&ntilde;os Mia Sarahi">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -974,10 +974,10 @@ body{font-weight:500;font-size:18px;}
              linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);
   -webkit-mask-composite:source-in;mask-composite:intersect;
 }
-#sintro.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-intro.jpg');opacity:.55;}
-#subic.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-ubicacion.jpg');opacity:.48;}
-#sfam.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-familia.jpg');opacity:.45;}
-#srsvp.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-rsvp.jpg');opacity:.42;}
+#sintro.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-intro-bosque.jpg');opacity:.55;}
+#subic.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-ubicacion-bosque.jpg');opacity:.48;}
+#sfam.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-familia-bosque.jpg');opacity:.45;}
+#srsvp.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-rsvp-bosque.jpg');opacity:.42;}
 
 /* ==========================================================================
    FOTOS INTERCALADAS — retrato enmarcado, esquinas doradas, entra con scroll
@@ -2418,6 +2418,45 @@ body{font-weight:500;font-size:18px;}
 }
 
 </style>
+<style>
+/* ===== XV MIA SARAHI: fondos bosque encantado + rayos de sol vivos ===== */
+#sintro.bgsec::before,#subic.bgsec::before,#sfam.bgsec::before,#srsvp.bgsec::before{
+  opacity:.96 !important;background-position:center top !important;
+  -webkit-mask-image:linear-gradient(transparent 0,#000 110px,#000 calc(100% - 110px),transparent) !important;
+          mask-image:linear-gradient(transparent 0,#000 110px,#000 calc(100% - 110px),transparent) !important;
+  -webkit-mask-composite:source-over !important;mask-composite:add !important;}
+/* capa de rayos: un abanico de haces que nace en la esquina donde el asset ya pinta el sol */
+.sun-rays{position:absolute;top:0;width:118%;aspect-ratio:1;z-index:-1;pointer-events:none;
+  -webkit-mask-image:radial-gradient(circle at 0 0,#000 0,rgba(0,0,0,.85) 22%,rgba(0,0,0,.35) 48%,transparent 72%);
+          mask-image:radial-gradient(circle at 0 0,#000 0,rgba(0,0,0,.85) 22%,rgba(0,0,0,.35) 48%,transparent 72%);}
+.sun-rays.sr-left{left:var(--sx,4%);}
+.sun-rays.sr-right{right:var(--sx,4%);transform:scaleX(-1);}
+.sun-rays i{position:absolute;inset:0;transform-origin:0 0;}
+.sun-rays i:nth-child(1){background:conic-gradient(from 90deg at 0 0,
+  transparent 0deg 22deg, rgba(255,240,205,.34) 25deg, transparent 29deg 33deg,
+  rgba(255,236,196,.26) 36.5deg, transparent 41deg 47deg, rgba(255,242,212,.38) 50deg, transparent 55deg 60deg,
+  rgba(255,234,190,.22) 62.5deg, transparent 66deg 90deg);}
+.sun-rays i:nth-child(2){background:conic-gradient(from 90deg at 0 0,
+  transparent 0deg 28deg, rgba(255,246,222,.22) 31deg, transparent 33.5deg 41deg,
+  rgba(255,240,206,.30) 44deg, transparent 47.5deg 53deg, rgba(255,246,222,.20) 56deg, transparent 59deg 90deg);}
+.sun-rays .sr-glow{position:absolute;left:-14%;top:-14%;width:42%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,244,214,.55) 0%,rgba(255,236,196,.22) 40%,rgba(255,236,196,0) 70%);}
+.sun-rays .sr-mote{position:absolute;width:3px;height:3px;border-radius:50%;opacity:0;
+  background:radial-gradient(circle,#fffaf0 0%,rgba(247,231,206,.9) 45%,rgba(247,231,206,0) 100%);}
+@media (prefers-reduced-motion:no-preference){
+  .sun-rays i:nth-child(1){animation:srSwayA 15s ease-in-out infinite alternate, srBreathA 7.5s ease-in-out infinite;}
+  .sun-rays i:nth-child(2){animation:srSwayB 21s ease-in-out infinite alternate, srBreathB 9.5s ease-in-out infinite;animation-delay:-6s,-3s;}
+  .sun-rays .sr-glow{animation:srGlow 8s ease-in-out infinite;}
+  .sun-rays .sr-mote{animation:srMote var(--d,11s) linear infinite;animation-delay:var(--dl,0s);}
+  @keyframes srSwayA{from{transform:rotate(-2.2deg)}to{transform:rotate(2.4deg)}}
+  @keyframes srSwayB{from{transform:rotate(2deg)}to{transform:rotate(-1.8deg)}}
+  @keyframes srBreathA{0%,100%{opacity:.62}38%{opacity:1}64%{opacity:.78}}
+  @keyframes srBreathB{0%,100%{opacity:.35}45%{opacity:.85}72%{opacity:.5}}
+  @keyframes srGlow{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+  @keyframes srMote{0%{transform:translate(0,0);opacity:0}15%{opacity:var(--o,.7)}50%{opacity:calc(var(--o,.7)*.35)}80%{opacity:var(--o,.7)}100%{transform:translate(var(--tx,120px),var(--ty,160px));opacity:0}}
+}
+@media (prefers-reduced-motion:reduce){.sun-rays .sr-mote{display:none;}}
+</style>
 </head>
 <body>
 
@@ -2425,8 +2464,8 @@ body{font-weight:500;font-size:18px;}
 
 <!-- ENVELOPE -->
 <div id="envelope-screen" role="button" aria-label="Toca para abrir tu invitacion">
-  <img id="env-image" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-leticia/sobre.png" alt="Invitaci&oacute;n de Mia Sarahi">
-  <video id="env-video" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-leticia/apertura.mp4" playsinline webkit-playsinline muted preload="auto"></video>
+  <img id="env-image" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/sobre-bosque.jpg" alt="Invitaci&oacute;n de Mia Sarahi">
+  <video id="env-video" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/apertura-bosque.mp4" playsinline webkit-playsinline muted preload="auto"></video>
   <p class="envelope-hint" id="env-hint">Toca para abrir</p>
 </div>
 <div id="env-flash"></div>
@@ -2489,8 +2528,7 @@ body{font-weight:500;font-size:18px;}
   </div>
 
   <!-- INTRO — Frase inicial -->
-  <section style="padding:0;" id="sintro" class="has-ink bgsec">
-    <div class="ink-bg" aria-hidden="true"><i style="background-image:url('ink/ink-hero.webp');animation-delay:-3s"></i></div>
+  <section style="padding:0;" id="sintro" class="bgsec">
     <div class="intro-wrap rv">
 
       <p class="intro-text"><span class="intro-drop">C</span>on el coraz&oacute;n lleno de ilusi&oacute;n y una
@@ -2615,8 +2653,7 @@ body{font-weight:500;font-size:18px;}
   </section>
 
   <!-- UBICACION — Dos venues distintos -->
-  <section id="subic" class="has-ink bgsec">
-    <div class="ink-bg v3" aria-hidden="true"><i style="background-image:url('ink/ink-corner.webp');animation-delay:-12s"></i></div>
+  <section id="subic" class="bgsec">
     <div class="eyebrow eyebrow-gold rv">D&oacute;nde celebraremos</div>
     <h2 class="sec-title rv">Ubicaci&oacute;n</h2>
     <div class="loc-grid">
@@ -2825,8 +2862,7 @@ body{font-weight:500;font-size:18px;}
   </div>
 
   <!-- FAMILIA -->
-  <section id="sfam" class="has-ink bgsec">
-    <div class="ink-bg v2 flip" aria-hidden="true"><i style="background-image:url('ink/ink-top.webp');animation-delay:-7s"></i></div>
+  <section id="sfam" class="bgsec">
     <div class="eyebrow eyebrow-gold rv">Con la Bendici&oacute;n de</div>
     <h2 class="sec-title rv">Mi Familia</h2>
 
@@ -3075,8 +3111,7 @@ body{font-weight:500;font-size:18px;}
   <!-- RSVP — diseno boda-jennifer-y-marcel repintado (blush / ciruela / champan).
        Conserva TODOS los ids y clases que usa "RSVP — PANEL INTEGRATION".
        OJO: btnYes / btnNo no llevan clases extra: el JS les reescribe className completo. -->
-  <section class="has-ink rv bgsec" id="srsvp">
-    <div class="ink-bg ink-oval v4 flip" aria-hidden="true"><i style="background-image:url('ink/ink-corner.webp');animation-delay:-10s"></i></div>
+  <section class="rv bgsec" id="srsvp">
     <div class="eyebrow eyebrow-silver">Conf&iacute;rmanos tu Asistencia</div>
     <h2 class="sec-title rv">R.S.V.P.</h2>
 
@@ -4883,6 +4918,25 @@ footer{padding-bottom:calc(120px + env(safe-area-inset-bottom)) !important;}
 ;
 (function(){var a=document.getElementById('bgAudio'),b=document.getElementById('music-btn');if(!a||!b)return;
 function u(){b.setAttribute('aria-label',a.paused?'Reproducir música':'Pausar música');}a.addEventListener('play',u);a.addEventListener('pause',u);u();})();
+</script>
+<script>
+/* ===== XV MIA SARAHI: rayos de sol vivos sobre los fondos del bosque ===== */
+(function(){
+  /* lado y punto de origen segun donde el asset pinta el sol */
+  var CFG={sintro:['sr-right','6%'],subic:['sr-left','10%'],sfam:['sr-left','14%'],srsvp:['sr-left','12%']};
+  Object.keys(CFG).forEach(function(id){
+    var sec=document.getElementById(id); if(!sec) return;
+    var d=document.createElement('div'); d.className='sun-rays '+CFG[id][0]; d.setAttribute('aria-hidden','true');
+    d.style.setProperty('--sx',CFG[id][1]);
+    var h='<span class="sr-glow"></span><i></i><i></i>';
+    for(var k=0;k<8;k++){
+      var a=(22+Math.random()*40)*Math.PI/180, r=8+Math.random()*30;
+      h+='<span class="sr-mote" style="left:'+(Math.cos(a)*r).toFixed(1)+'%;top:'+(Math.sin(a)*r).toFixed(1)+'%;--tx:'+(Math.cos(a)*(60+Math.random()*80)).toFixed(0)+'px;--ty:'+(Math.sin(a)*(60+Math.random()*80)).toFixed(0)+'px;--d:'+(9+Math.random()*7).toFixed(1)+'s;--dl:-'+(Math.random()*12).toFixed(1)+'s;--o:'+(.45+Math.random()*.4).toFixed(2)+'"></span>';
+    }
+    d.innerHTML=h;
+    sec.insertBefore(d, sec.firstChild);
+  });
+})();
 </script>
 </body>
 </html>
