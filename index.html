@@ -2457,6 +2457,12 @@ body{font-weight:500;font-size:18px;}
 }
 @media (prefers-reduced-motion:reduce){.sun-rays .sr-mote{display:none;}}
 </style>
+<style>
+/* ===== XV MIA SARAHI: cambios de la clienta (14-nov) ===== */
+#sdc .fdc-swatches.fdc-sw-one{grid-template-columns:minmax(0,170px);}
+#sdc .fdc-swatches.fdc-sw-four{grid-template-columns:repeat(2,minmax(0,140px));gap:22px 30px;margin-top:18px;}
+#env-flash{background:radial-gradient(circle at 50% 46%,#fffdf6 0%,#fff6e6 28%,rgba(255,236,214,.92) 55%,rgba(255,228,238,.85) 100%) !important;z-index:10001 !important;}
+</style>
 </head>
 <body>
 
@@ -2757,19 +2763,6 @@ body{font-weight:500;font-size:18px;}
           <div class="itv4-label">Recepci&oacute;n</div>
         </div>
       </div>
-
-      <div class="itv4-card itv4-pend rv">
-        <div class="itv4-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--dark)" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9" fill="var(--blush)" fill-opacity=".4"/>
-            <path d="M12 7V12L15 14"/>
-          </svg>
-        </div>
-        <div class="itv4-info">
-          <div class="itv4-time">Por confirmar</div>
-          <div class="itv4-label">El programa de la noche</div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -2810,24 +2803,37 @@ body{font-weight:500;font-size:18px;}
 
     <div class="fdc-avoid-block rv">
       <p class="fdc-avoid">Colores a evitar</p>
-      <div class="fdc-swatches" role="list">
+      <div class="fdc-swatches fdc-sw-one" role="list">
         <div class="fdc-sw" role="listitem">
           <span class="fdc-dot-wrap" aria-hidden="true"><span class="fdc-swatch-dot fdc-dot-rosa"><i class="fdc-shine"></i></span></span>
           <span class="fdc-sw-name">Rosa (cualquier tono)</span>
-        </div>
-        <div class="fdc-sw" role="listitem">
-          <span class="fdc-dot-wrap" aria-hidden="true"><span class="fdc-swatch-dot fdc-dot-blanco"><i class="fdc-shine"></i></span></span>
-          <span class="fdc-sw-name">Blanco</span>
         </div>
       </div>
     </div>
 
     <div class="fdc-suggest-block rv">
       <p class="fdc-avoid">Colores sugeridos</p>
-      <p class="fdc-suggest">A tu elecci&oacute;n</p>
+      <div class="fdc-swatches fdc-sw-four" role="list">
+        <div class="fdc-sw" role="listitem" style="animation-delay:-0.00s">
+          <span class="fdc-dot-wrap" aria-hidden="true"><span class="fdc-swatch-dot" style="background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.45) 0%, #4e663b 42%, #4e663b 100%)"><i class="fdc-shine" style="animation-delay:0.00s"></i></span></span>
+          <span class="fdc-sw-name">Verde olivo</span>
+        </div>
+        <div class="fdc-sw" role="listitem" style="animation-delay:-1.05s">
+          <span class="fdc-dot-wrap" aria-hidden="true"><span class="fdc-swatch-dot" style="background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.45) 0%, #8c0606 42%, #8c0606 100%)"><i class="fdc-shine" style="animation-delay:0.90s"></i></span></span>
+          <span class="fdc-sw-name">Rojo vino</span>
+        </div>
+        <div class="fdc-sw" role="listitem" style="animation-delay:-2.10s">
+          <span class="fdc-dot-wrap" aria-hidden="true"><span class="fdc-swatch-dot" style="background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.45) 0%, #1c0ee6 42%, #1c0ee6 100%)"><i class="fdc-shine" style="animation-delay:1.80s"></i></span></span>
+          <span class="fdc-sw-name">Azul rey</span>
+        </div>
+        <div class="fdc-sw" role="listitem" style="animation-delay:-3.15s">
+          <span class="fdc-dot-wrap" aria-hidden="true"><span class="fdc-swatch-dot" style="background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.45) 0%, #5c3333 42%, #5c3333 100%)"><i class="fdc-shine" style="animation-delay:2.70s"></i></span></span>
+          <span class="fdc-sw-name">Chocolate</span>
+        </div>
+      </div>
     </div>
 
-    <p class="fdc-final rv">Te pedimos evitar cualquier tono de rosa y el color blanco. &iexcl;Gracias por tu comprensi&oacute;n!</p>
+    <p class="fdc-final rv">&ldquo;Queremos que luzcas radiante. Te pedimos de la manera m&aacute;s atenta evitar vestir en tonos rosa, ya que est&aacute;n reservados para nuestra protagonista de la noche.&rdquo;</p>
   </section>
 
 
@@ -2892,7 +2898,12 @@ body{font-weight:500;font-size:18px;}
           <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <div class="fam2-role">Mis Padrinos</div>
-        <div class="fam2-names fam2-pend">Por confirmar</div>
+        <div class="fam2-names">
+          <span class="fam2-n">Juan Alberto Troy Hern&aacute;ndez Ruiz</span>
+          <span class="fam2-n">Linda Guadalupe Rocha Rojas</span>
+          <span class="fam2-n">Julio Alfredo Hern&aacute;ndez Ruiz</span>
+          <span class="fam2-n">Daniel Alejandro Rocha Rojas</span>
+        </div>
       </div>
 
     </div>
@@ -3214,7 +3225,7 @@ body{font-weight:500;font-size:18px;}
   </span>
 </button>
 <audio id="bgAudio" loop preload="none">
-  <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/xv-mia-sarahi-rocha-hernandez/cancion.mp3" type="audio/mpeg">
+  <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/xv-mia-sarahi-rocha-hernandez/cancion-v2.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -4944,6 +4955,20 @@ function u(){b.setAttribute('aria-label',a.paused?'Reproducir música':'Pausar m
     d.innerHTML=h;
     sec.insertBefore(d, sec.firstChild);
   });
+})();
+</script>
+<script>
+/* ===== XV MIA SARAHI: destello luminoso al abrir el sobre ===== */
+(function(){
+  var v=document.getElementById('env-video'), f=document.getElementById('env-flash'); if(!v||!f) return;
+  var done=false;
+  function flash(){
+    if(done) return; done=true;
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    if(window.gsap){ gsap.timeline().to(f,{opacity:.92,duration:.5,ease:'power2.out'}).to(f,{opacity:0,duration:1.3,ease:'power2.inOut',delay:.15}); }
+  }
+  v.addEventListener('timeupdate',function(){ if(v.duration&&v.currentTime>=v.duration-1.15) flash(); });
+  v.addEventListener('ended',flash);
 })();
 </script>
 </body>
