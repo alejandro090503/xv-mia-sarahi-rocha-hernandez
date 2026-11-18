@@ -974,10 +974,10 @@ body{font-weight:500;font-size:18px;}
              linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);
   -webkit-mask-composite:source-in;mask-composite:intersect;
 }
-#sintro.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-intro-bosque.jpg');opacity:.55;}
-#subic.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-ubicacion-bosque.jpg');opacity:.48;}
-#sfam.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-familia-bosque.jpg');opacity:.45;}
-#srsvp.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-rsvp-bosque.jpg');opacity:.42;}
+#sintro.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-jardin.jpg');opacity:.55;}
+#subic.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-jardin.jpg');opacity:.48;}
+#sfam.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-jardin.jpg');opacity:.45;}
+#srsvp.bgsec::before{background-image:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-jardin.jpg');opacity:.42;}
 
 /* ==========================================================================
    FOTOS INTERCALADAS — retrato enmarcado, esquinas doradas, entra con scroll
@@ -2464,6 +2464,14 @@ body{font-weight:500;font-size:18px;}
 .fam2-group:only-child{border-radius:24px !important;}
 #sdc .fdc-swatches.fdc-sw-four .fdc-sw-last{grid-column:1 / -1;justify-self:center;}
 #env-flash{background:radial-gradient(circle at 50% 46%,#fffdf6 0%,#fff6e6 28%,rgba(255,236,214,.92) 55%,rgba(255,228,238,.85) 100%) !important;z-index:10001 !important;}
+</style>
+<style>
+/* ===== XV MIA SARAHI: fondo de jardin (pedido de la clienta, 17-nov) ===== */
+#sintro.bgsec::before{background-position:center 30% !important;}
+#subic.bgsec::before{background-position:center 55% !important;}
+#sfam.bgsec::before{background-position:center 70% !important;}
+#srsvp.bgsec::before{background-position:center 40% !important;}
+#sintro.bgsec::before,#subic.bgsec::before,#sfam.bgsec::before,#srsvp.bgsec::before{opacity:.9 !important;}
 </style>
 </head>
 <body>
@@ -4950,7 +4958,7 @@ function u(){b.setAttribute('aria-label',a.paused?'Reproducir música':'Pausar m
 /* ===== XV MIA SARAHI: rayos de sol vivos sobre los fondos del bosque ===== */
 (function(){
   /* lado y punto de origen segun donde el asset pinta el sol */
-  var CFG={sintro:['sr-right','6%'],subic:['sr-left','10%'],sfam:['sr-left','14%'],srsvp:['sr-left','12%']};
+  var CFG={}; /* sin rayos: el fondo de jardin ya trae su luz */
   Object.keys(CFG).forEach(function(id){
     var sec=document.getElementById(id); if(!sec) return;
     var d=document.createElement('div'); d.className='sun-rays '+CFG[id][0]; d.setAttribute('aria-hidden','true');
