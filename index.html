@@ -2532,6 +2532,67 @@ body{font-weight:500;font-size:18px;}
 .aviso-line{width:64px;height:1px;margin:22px auto 18px;background:linear-gradient(90deg,transparent,#c9a66b,transparent);}
 .aviso-firma{display:block;width:max-content;max-width:100%;margin:0 auto !important;font-family:'Great Vibes',cursive;font-size:29px;white-space:nowrap;}
 </style>
+<style>
+/* ===== XV MIA SARAHI: SALON ESPEJO (fondo unico en toda la invitacion) =====
+   Sin backdrop-filter ni mix-blend: pocas capas para no tronar en iPhone. */
+#salon{position:fixed;top:0;left:50%;width:min(100vw,430px);height:100vh;height:100lvh;margin-left:calc(min(100vw,430px) / -2);
+  z-index:0;overflow:hidden;pointer-events:none;background:#f6e6dd;}
+.sl-cam{position:absolute;left:50%;top:50%;width:max(100%,calc(100vh * 768 / 1376));width:max(100%,calc(100lvh * 768 / 1376));aspect-ratio:768/1376;
+  transform:translate3d(-50%,-50%,0) scale(1.02);transform-origin:50% 62%;will-change:transform;
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-jardin.jpg') center/100% 100% no-repeat;}
+.sl-mirror{position:absolute;left:0;right:0;top:67.4%;bottom:0;overflow:hidden;opacity:.5;
+  -webkit-mask-image:linear-gradient(#000 0,rgba(0,0,0,.62) 38%,transparent 94%);mask-image:linear-gradient(#000 0,rgba(0,0,0,.62) 38%,transparent 94%);}
+.sl-refl{position:absolute;left:-2%;width:104%;height:306.7%;top:-206.7%;transform-origin:50% 67.4%;transform:scaleY(-.74);
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-mia-sarahi-rocha-hernandez/bg-jardin.jpg') center/100% 100% no-repeat;}
+.sl-gloss{position:absolute;left:0;right:0;top:67.4%;bottom:0;overflow:hidden;}
+.sl-gloss::before{content:'';position:absolute;top:0;bottom:0;left:0;width:46%;transform:translateX(-130%) skewX(-18deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.34) 48%,rgba(255,240,214,.42) 52%,transparent);}
+.sl-glow{position:absolute;width:13%;aspect-ratio:1;margin:-6.5% 0 0 -6.5%;border-radius:50%;opacity:.7;
+  background:radial-gradient(circle,rgba(255,236,190,.95) 0,rgba(255,206,130,.5) 26%,rgba(255,190,120,.14) 52%,transparent 70%);}
+.sl-spark{position:absolute;width:4px;height:4px;border-radius:50%;opacity:0;background:#fff3d6;box-shadow:0 0 7px 2px rgba(255,226,170,.75);}
+#salon::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,244,240,.10),rgba(255,240,240,.02) 45%,rgba(120,60,70,.10));}
+@media (prefers-reduced-motion:no-preference){
+  .sl-refl{animation:slRipple 9s ease-in-out infinite alternate;}
+  .sl-gloss::before{animation:slGloss 12s ease-in-out infinite;}
+  .sl-glow{animation:slFlame var(--d,2.6s) ease-in-out infinite alternate;animation-delay:var(--dl,0s);}
+  .sl-spark{animation:slSpark var(--d,12s) linear infinite;animation-delay:var(--dl,0s);}
+  @keyframes slRipple{0%{transform:translateX(-1%) scaleY(-.74) skewX(-.5deg)}100%{transform:translateX(1%) scaleY(-.71) skewX(.5deg)}}
+  @keyframes slGloss{0%,42%{transform:translateX(-130%) skewX(-18deg)}78%,100%{transform:translateX(260%) skewX(-18deg)}}
+  @keyframes slFlame{0%{opacity:.46;transform:scale(.9)}38%{opacity:.82;transform:scale(1.05)}64%{opacity:.58;transform:scale(.96)}100%{opacity:.92;transform:scale(1.12)}}
+  @keyframes slSpark{0%{transform:translate(0,0);opacity:0}15%{opacity:.9}70%{opacity:.5}100%{transform:translate(var(--x,12px),-34vh);opacity:0}}
+}
+/* la invitacion deja ver el salon */
+.wrap{background:transparent !important;background-image:none !important;}
+.hero{background:transparent !important;-webkit-mask-image:linear-gradient(#000 calc(100% - 132px),rgba(0,0,0,.72) calc(100% - 92px),rgba(0,0,0,.28) calc(100% - 44px),transparent);mask-image:linear-gradient(#000 calc(100% - 132px),rgba(0,0,0,.72) calc(100% - 92px),rgba(0,0,0,.28) calc(100% - 44px),transparent);}
+.hero-bg{bottom:-90px !important;}
+.sf-fade,.wrap .ink-bg,.wrap > .orn,.sun-rays{display:none !important;}
+.bgsec::before,.date-hero::before{display:none !important;}
+/* tarjetas de cristal */
+.wrap > section:not(.hero),.wrap > footer,.wrap > .fecha-sec{
+  position:relative;margin:38px 14px !important;border-radius:26px;overflow:clip;
+  background:radial-gradient(ellipse 82% 66% at 50% 48%,rgba(255,252,249,.86) 34%,rgba(255,248,247,.58) 100%) !important;
+  border:1px solid rgba(201,166,107,.55);
+  box-shadow:0 20px 44px -20px rgba(92,40,60,.5),inset 0 1px 0 rgba(255,255,255,.9),inset 0 0 0 4px rgba(255,255,255,.16);}
+.wrap > section:not(.hero):not(#sintro):not(#sgal){padding-left:16px !important;padding-right:16px !important;padding-top:46px !important;padding-bottom:46px !important;}
+.wrap > footer{padding-bottom:30px !important;margin-bottom:112px !important;}
+/* las fotos flotan directo sobre el salon */
+.wrap > .ph{margin-top:44px !important;margin-bottom:44px !important;filter:drop-shadow(0 16px 22px rgba(92,40,60,.34));}
+.wrap > .ph .ph-cap{display:table;margin-left:auto;margin-right:auto;padding:3px 16px;border-radius:99px;background:rgba(255,251,248,.86);color:var(--dark) !important;position:relative;z-index:3;}
+/* tarjetas internas: cristal fino, sin caja sobre caja */
+.cd2-container,.loc1-card,.fam2-group,.aviso-card,.itv4-card{background:rgba(255,255,255,.36) !important;box-shadow:none !important;border:1px solid rgba(201,166,107,.34) !important;}
+/* carrusel: reflejo real sobre el cristal */
+.g3d-refl .g3d-veil{display:none !important;}
+.g3d-refl{-webkit-mask-image:linear-gradient(rgba(0,0,0,.42),transparent 84%);mask-image:linear-gradient(rgba(0,0,0,.42),transparent 84%);}
+.wrap > .fecha-sec{padding-left:8px !important;padding-right:8px !important;}
+.wrap > .fecha-sec *{white-space:nowrap;letter-spacing:.15em !important;}
+.gl-sheen{position:absolute;inset:0;z-index:4;overflow:hidden;border-radius:inherit;pointer-events:none;}
+.gl-sheen::before{content:'';position:absolute;top:-10%;bottom:-10%;left:0;width:42%;opacity:0;transform:translateX(-140%) skewX(-16deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.72) 50%,transparent);}
+@media (prefers-reduced-motion:no-preference){
+  .gl-in > .gl-sheen::before{animation:glSweep 1.5s cubic-bezier(.4,0,.2,1) .25s 1 both;}
+  @keyframes glSweep{0%{opacity:0;transform:translateX(-140%) skewX(-16deg)}18%{opacity:1}82%{opacity:1}100%{opacity:0;transform:translateX(340%) skewX(-16deg)}}
+}
+</style>
 </head>
 <body>
 
@@ -2552,6 +2613,7 @@ body{font-weight:500;font-size:18px;}
   <div class="ld-tag" id="ldTag">Sus XV A&ntilde;os &middot; 17 Diciembre 2026</div>
 </div>
 
+<div id="salon" aria-hidden="true"><div class="sl-cam"><div class="sl-mirror"><div class="sl-refl"></div></div><div class="sl-gloss"></div><i class="sl-glow" style="left:1.6%;top:84.7%;--d:2.1s;--dl:-0.0s"></i><i class="sl-glow" style="left:6.5%;top:82%;--d:2.5s;--dl:-0.7s"></i><i class="sl-glow" style="left:12%;top:83.7%;--d:2.8s;--dl:-1.4s"></i><i class="sl-glow" style="left:25.4%;top:73.4%;--d:3.2s;--dl:-2.1s"></i><i class="sl-glow" style="left:29.6%;top:73.3%;--d:3.6s;--dl:-2.8s"></i><i class="sl-glow" style="left:31.5%;top:71.2%;--d:2.5s;--dl:-3.5s"></i><i class="sl-glow" style="left:76.4%;top:74.5%;--d:2.8s;--dl:-4.2s"></i><i class="sl-glow" style="left:81.8%;top:74.1%;--d:3.2s;--dl:-4.9s"></i><i class="sl-glow" style="left:98%;top:81.8%;--d:3.6s;--dl:-5.6s"></i><i class="sl-spark" style="left:18%;top:62%;--d:11s;--dl:-0.0s;--x:8px"></i><i class="sl-spark" style="left:34%;top:58%;--d:12s;--dl:-1.9s;--x:-10px"></i><i class="sl-spark" style="left:46%;top:72%;--d:13s;--dl:-3.8s;--x:12px"></i><i class="sl-spark" style="left:58%;top:64%;--d:14s;--dl:-5.7s;--x:-14px"></i><i class="sl-spark" style="left:70%;top:56%;--d:15s;--dl:-7.6s;--x:16px"></i><i class="sl-spark" style="left:84%;top:68%;--d:11s;--dl:-9.5s;--x:-18px"></i><i class="sl-spark" style="left:26%;top:80%;--d:12s;--dl:-11.4s;--x:20px"></i><i class="sl-spark" style="left:64%;top:84%;--d:13s;--dl:-13.3s;--x:-22px"></i></div></div>
 <div class="wrap" style="visibility:hidden">
 
   <!-- HERO -->
@@ -5092,6 +5154,27 @@ function u(){b.setAttribute('aria-label',a.paused?'Reproducir música':'Pausar m
   }
   v.addEventListener('timeupdate',function(){ if(v.duration&&v.currentTime>=v.duration-1.15) flash(); });
   v.addEventListener('ended',flash);
+})();
+</script>
+<script>
+/* XV MIA SARAHI: camara del salon y brillo de las tarjetas */
+(function(){
+  var cam=document.querySelector('.sl-cam'); if(!cam) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches, tick=false, max=1;
+  function measure(){ max=Math.max(1,document.documentElement.scrollHeight-innerHeight); paint(); }
+  function paint(){ tick=false; var p=Math.min(1,Math.max(0,(window.pageYOffset||0)/max));
+    cam.style.transform='translate3d(-50%,-50%,0) scale('+(1.02+.16*p).toFixed(4)+')'; }
+  if(!reduce){
+    window.addEventListener('scroll',function(){ if(!tick){ tick=true; requestAnimationFrame(paint); } },{passive:true});
+    window.addEventListener('resize',measure,{passive:true}); window.addEventListener('load',measure);
+    setInterval(measure,4000); measure();
+  }
+  var els=[].slice.call(document.querySelectorAll('.wrap > section:not(.hero),.wrap > footer,.wrap > .fecha-sec'));
+  els.forEach(function(e){ var i=document.createElement('i'); i.className='gl-sheen'; i.setAttribute('aria-hidden','true'); e.appendChild(i); });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('gl-in'); io.unobserve(x.target); } }); },{threshold:.18});
+    els.forEach(function(e){ io.observe(e); });
+  }
 })();
 </script>
 </body>
