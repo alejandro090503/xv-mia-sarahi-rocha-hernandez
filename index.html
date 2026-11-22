@@ -2481,6 +2481,28 @@ body{font-weight:500;font-size:18px;}
 /* letra capital C: caja mas amplia para que el trazo script no se corte (el degradado recorta al borde de la caja) */
 .intro-drop{display:inline-block !important;padding:.24em .22em .14em .5em !important;margin:-.24em .04em -.14em -.5em !important;line-height:1 !important;vertical-align:-.12em !important;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
 </style>
+<style>
+/* ===== XV MIA SARAHI: marco ovalado alrededor de las fotos (pedido de la clienta, 22-nov) ===== */
+.ph{padding:22px !important;}
+.ph-corner{display:none !important;}
+.ph-inner{border-radius:50% !important;
+  box-shadow:0 0 0 4px #c48a94,0 0 0 5px rgba(255,255,255,.55),0 18px 44px rgba(110,35,80,.20) !important;}
+.ph-inner::before{inset:0 !important;border:0 !important;border-radius:50%;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.45);}
+.ph-inner::after{border-radius:50%;}
+.ph-inner img{object-fit:cover !important;object-position:center 30% !important;}
+/* aro exterior punteado + arcos pequenos, se mueven con la foto */
+.ph::before{content:'';position:absolute;inset:3px;border-radius:50%;z-index:1;pointer-events:none;
+  border:1px dotted rgba(183,110,121,.85);
+  box-shadow:0 0 0 7px rgba(255,246,250,0),0 0 0 8px rgba(201,166,107,.28);}
+.ph:nth-of-type(2n)::before{animation-duration:7.1s;animation-delay:-1.6s;}
+.ph:nth-of-type(3n)::before{animation-duration:5.6s;animation-delay:-3.1s;}
+#ph-ancha::before{animation-duration:7.8s;animation-delay:-.9s;}
+@media (prefers-reduced-motion:no-preference){.ph::before{animation:phFloat 6.2s ease-in-out infinite;}}
+#ph-ancha{width:94% !important;max-width:400px !important;}
+#ph-ancha .ph-inner img{aspect-ratio:4/3 !important;}
+.ph-cap{margin-top:34px !important;}
+</style>
 </head>
 <body>
 
