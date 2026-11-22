@@ -2503,6 +2503,16 @@ body{font-weight:500;font-size:18px;}
 #ph-ancha .ph-inner img{aspect-ratio:4/3 !important;}
 .ph-cap{margin-top:34px !important;}
 </style>
+<style>
+/* ===== XV MIA SARAHI: aviso a los padres ===== */
+.aviso-sec{text-align:center;padding:56px 22px 40px;}
+.aviso-card{max-width:360px;margin:6px auto 0;padding:30px 26px;border-radius:26px;
+  background:linear-gradient(160deg,rgba(255,255,255,.88),rgba(255,230,241,.78));
+  border:1px solid rgba(201,166,107,.45);box-shadow:0 16px 44px -14px rgba(110,35,80,.22);}
+.aviso-card p{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;line-height:1.7;color:var(--text);margin:0 0 16px;}
+.aviso-card p:last-child{margin-bottom:0;color:var(--dark);font-style:italic;font-weight:600;}
+.aviso-card strong{font-weight:700;color:var(--dark);}
+</style>
 </head>
 <body>
 
@@ -3159,6 +3169,17 @@ body{font-weight:500;font-size:18px;}
     </svg>
   </div>
 
+
+  <!-- AVISO A LOS PADRES (texto de la clienta, literal) -->
+  <section id="saviso" class="aviso-sec">
+    <div class="eyebrow eyebrow-gold rv">Aviso especial</div>
+    <h2 class="sec-title rv">Atenci&oacute;n Padres</h2>
+    <div class="aviso-card rv">
+      <p>Queremos pedirles de manera muy especial a todos los padres que, por favor, <strong>est&eacute;n pendientes de sus ni&ntilde;os durante la ceremonia de inicio en la celebraci&oacute;n.</strong></p>
+      <p>Esto nos ayudar&aacute; a mantener el orden y permitir&aacute; que la quincea&ntilde;era pueda disfrutar y llevar a cabo su programa tal como est&aacute; preparado.</p>
+      <p>&iexcl;Gracias por su comprensi&oacute;n y por acompa&ntilde;arnos en este d&iacute;a tan especial!</p>
+    </div>
+  </section>
 
   <div class="ph rv">
     <svg class="ph-corner ph-c-tl" viewBox="0 0 26 26" fill="none" aria-hidden="true"><path d="M1 25 L1 1 L25 1" stroke="var(--gold)" stroke-width="1.1" opacity=".72"/><path d="M5 25 L5 5 L25 5" stroke="var(--gold)" stroke-width=".6" opacity=".38"/><circle cx="1" cy="1" r="2" fill="var(--gold)" opacity=".6"/></svg>
@@ -4343,7 +4364,7 @@ footer{padding-bottom:calc(120px + env(safe-area-inset-bottom)) !important;}
 
   /* ===== 12. MENU ===== */
   var SECS=[['shero','Inicio'],['scd','Cuenta regresiva'],['subic','Ubicación'],['siti','Itinerario'],['sdc','Vestimenta'],
-            ['sfam','Familia'],['sgifts','Regalos'],['sgal','Galería'],['salbum','Álbum'],['srsvp','Confirmar']]
+            ['sfam','Familia'],['sgifts','Regalos'],['sgal','Galería'],['salbum','Álbum'],['saviso','Aviso'],['srsvp','Confirmar']]
             .filter(function(x){return document.getElementById(x[0]);});
   var btn=document.getElementById('msMenuBtn'), menu=document.getElementById('msMenu'), list=document.getElementById('msList');
   SECS.forEach(function(x,i){
