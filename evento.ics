@@ -16,7 +16,7 @@ END:VTIMEZONE
 BEGIN:VEVENT
 UID:recepcion-xv-mia-sarahi-20261217@xv-mia-sarahi-rocha-hernandez.vercel.app
 DTSTAMP:20261113T120000Z
-DTSTART;TZID=America/Monterrey:20261217T190000
+DTSTART;TZID=America/Monterrey:20261217T193000
 DTEND;TZID=America/Monterrey:20261218T010000
 SUMMARY:XV Años de Mia Sarahi
 DESCRIPTION:Recepción de los XV Años de Mia Sarahi.\n\nInvitación: https://

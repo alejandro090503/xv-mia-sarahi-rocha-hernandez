@@ -2803,7 +2803,7 @@ body{font-weight:500;font-size:18px;}
             <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           </div>
           <div class="loc1-label">Recepci&oacute;n</div>
-          <div class="loc1-time">7:00 <span style="font-size:18px;letter-spacing:3px;">PM</span></div>
+          <div class="loc1-time">7:30 <span style="font-size:18px;letter-spacing:3px;">PM</span></div>
           <div class="loc1-addr">Emporio Eventos<br>en Guadalupe<br><span style="font-size:16px;opacity:.85;">Av. Guadalajara 428, Hacienda de San Miguel<br>Guadalupe, N.L. 67113</span></div>
           <div class="loc1-hsep"></div>
         </div>
@@ -2891,7 +2891,7 @@ body{font-weight:500;font-size:18px;}
           </svg>
         </div>
         <div class="itv4-info">
-          <div class="itv4-time">7:00 PM</div>
+          <div class="itv4-time">7:30 PM</div>
           <div class="itv4-label">Recepci&oacute;n</div>
         </div>
       </div>
@@ -3667,9 +3667,9 @@ function initScrollReveal(){
   });
 })();
 
-/* COUNTDOWN — 17 diciembre 2026 19:00 Monterrey (UTC-6) */
+/* COUNTDOWN — 17 diciembre 2026 19:30 Monterrey (UTC-6) */
 (function(){
-  var target=new Date('2026-12-17T19:00:00-06:00').getTime();
+  var target=new Date('2026-12-17T19:30:00-06:00').getTime();
   var C=314.16;
   var ringsAnimated=false;
   function setRing(type,fraction){
@@ -3712,7 +3712,7 @@ function initScrollReveal(){
 })();
 
 /* CALENDARIO — Google Calendar + Apple/.ics
-   17 dic 2026, 7:00 PM Monterrey (UTC-6) = 01:00 UTC del 18. */
+   17 dic 2026, 7:30 PM Monterrey (UTC-6) = 01:30 UTC del 18. */
 (function(){
   var gcal = document.getElementById('gcalBtn');
   var ics  = document.getElementById('icsBtn');
@@ -3720,7 +3720,7 @@ function initScrollReveal(){
 
   var TXT={
     es:{t:'XV Años de Mia Sarahi',
-        d:'Recepción: 7:00 PM — Emporio Eventos en Guadalupe, Av. Guadalajara 428, Hacienda de San Miguel, Guadalupe, N.L.\n\nInvitación: https://xv-mia-sarahi-rocha-hernandez.vercel.app',
+        d:'Recepción: 7:30 PM — Emporio Eventos en Guadalupe, Av. Guadalajara 428, Hacienda de San Miguel, Guadalupe, N.L.\n\nInvitación: https://xv-mia-sarahi-rocha-hernandez.vercel.app',
         ics:'/evento.ics'}
   };
   var LOC = encodeURIComponent('Emporio Eventos en Guadalupe, Av. Guadalajara 428, Hacienda de San Miguel, 67113 Guadalupe, N.L.');
@@ -3730,7 +3730,7 @@ function initScrollReveal(){
     gcal.href =
       'https://calendar.google.com/calendar/render?action=TEMPLATE' +
       '&text='     + encodeURIComponent(x.t) +
-      '&dates=20261218T010000Z/20261218T070000Z' +
+      '&dates=20261218T013000Z/20261218T070000Z' +
       '&details='  + encodeURIComponent(x.d) +
       '&location=' + LOC +
       '&ctz=America/Monterrey';
