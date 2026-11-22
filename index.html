@@ -3435,6 +3435,7 @@ window.unlockAudio = function(){
   if(p && p.then){
     p.then(function(){
       window.audioUnlocked = true;
+      if(window.__msMusicOn) return;
       a.pause();
       try{ a.currentTime = 0; }catch(e){}
     }).catch(function(){ /* seguimos intentando en el proximo gesto */ });
@@ -3448,7 +3449,9 @@ window.unlockAudio = function(){
    espera del proximo toque en cualquier parte de la pagina. */
 window.startMusic = function(){
   var a = document.getElementById('bgAudio');
-  if(!a || !a.paused) return;
+  if(!a) return;
+  window.__msMusicOn = true;
+  if(!a.paused){ if(a.volume < .55){ if(window.gsap) gsap.to(a,{volume:1,duration:2,ease:'power1.inOut'}); else a.volume = 1; } return; }
   try{ a.volume = 0; }catch(e){}
   var p;
   try{ p = a.play(); }catch(e){ p = null; }
@@ -4995,8 +4998,10 @@ footer{padding-bottom:calc(120px + env(safe-area-inset-bottom)) !important;}
   if(lb && lb.parentNode !== document.body) document.body.appendChild(lb);   /* fuera de .wrap */
   function srcOf(i){ var im = items[i].querySelector('.g3d-card img'); return im ? (im.getAttribute('data-full') || im.currentSrc || im.src) : ''; }
   function show(i){ cur = (i + n) % n; lbImg.src = srcOf(cur); }
+  var openedAt = 0;
   function openLb(i){
     if(!lb || i < 0) return;
+    openedAt = performance.now();
     show(i);
     lbOpen = true; sync();
     lb.classList.add('on'); lb.setAttribute('aria-hidden', 'false');
@@ -5009,6 +5014,8 @@ footer{padding-bottom:calc(120px + env(safe-area-inset-bottom)) !important;}
     vel = AUTO * dir; sync();
   }
   if(lb){
+    /* en celular el mismo toque que abre dispara un click sobre la foto ya abierta */
+    lb.addEventListener('click', function(e){ if(performance.now() - openedAt < 480){ e.stopPropagation(); e.preventDefault(); } }, true);
     lb.querySelector('.g3d-lb-bg').addEventListener('click', closeLb);
     lbImg.addEventListener('click', closeLb);
     document.getElementById('g3d-lb-close').addEventListener('click', function(e){ e.stopPropagation(); closeLb(); });
@@ -5175,6 +5182,24 @@ function u(){b.setAttribute('aria-label',a.paused?'Reproducir música':'Pausar m
     var io=new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('gl-in'); io.unobserve(x.target); } }); },{threshold:.18});
     els.forEach(function(e){ io.observe(e); });
   }
+})();
+</script>
+<script>
+/* XV MIA SARAHI: la cancion vuelve sola tras una interrupcion; solo el vinilo la apaga */
+(function(){
+  var a=document.getElementById('bgAudio'), btn=document.getElementById('music-btn'); if(!a) return;
+  var userOff=false, t=0;
+  function resume(){
+    if(!window.__msMusicOn||userOff||!a.paused||document.hidden) return;
+    try{ if(a.volume<.2) a.volume=1; var p=a.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){}
+  }
+  if(btn) btn.addEventListener('click',function(){ window.__msMusicOn=true; userOff=!a.paused; },true);
+  a.addEventListener('pause',function(){ clearTimeout(t); t=setTimeout(resume,350); });
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden) setTimeout(resume,120); });
+  window.addEventListener('pageshow',resume); window.addEventListener('focus',resume);
+  ['touchend','pointerup','click'].forEach(function(ev){
+    document.addEventListener(ev,function(e){ if(btn&&e.target&&e.target.closest&&e.target.closest('#music-btn')) return; resume(); },{capture:true,passive:true});
+  });
 })();
 </script>
 </body>
