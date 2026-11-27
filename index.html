@@ -3335,6 +3335,11 @@ body{font-weight:500;font-size:18px;}
         </div>
 
         <div id="rsvp-bandeja">
+          <!-- Link general (sin ?i=): el invitado escribe su nombre y el panel crea su invitación -->
+          <div id="rsvp-abierto" style="display:none;margin:0 0 18px">
+            <label class="jm-q" for="rsvp-familia" id="rsvp-familia-lbl">Tu nombre o el de tu familia</label>
+            <input class="rsvp-input" id="rsvp-familia" type="text" maxlength="60" autocomplete="name" placeholder="Ej. Familia Rocha Hernández">
+          </div>
           <p class="jm-q">&iquest;Nos acompa&ntilde;ar&aacute;s?</p>
           <div class="rsvp-toggle">
             <button class="rsvp-toggle-btn" id="btnYes" type="button">S&iacute;, asistir&eacute;</button>
@@ -3792,6 +3797,15 @@ function initScrollReveal(){
 
   var rsvpChoice = null, savedNames = [], bloqueado = false;
 
+  /* LINK GENERAL (26 nov 2026): sin link personal se confirma escribiendo el
+     nombre; el panel crea la invitación sola (POST con un nombre nuevo).
+     Tope de personas por confirmación: */
+  var TOPE_ABIERTO = 5;
+  var abierto = !invId && !urlPara;
+  if (abierto) pasesAsignados = TOPE_ABIERTO;
+  var abiertoBox = document.getElementById('rsvp-abierto');
+  var familiaEl  = document.getElementById('rsvp-familia');
+
   /* Todo lo que el JS escribe vive aqui en los dos idiomas. El ultimo aviso se
      guarda como FUNCION para poder repintarlo si cambian de idioma. */
   var RT = {
@@ -3821,7 +3835,12 @@ function initScrollReveal(){
       noIdentifica:'No pudimos identificar tu invitación. Abre el enlace personalizado que te enviamos; ese es el único que registra tu confirmación.',
       borrada:'Esta invitación ya no está activa. Contacta a la familia para que te envíe un enlace nuevo.',
       errEnvio:'Hubo un problema al enviar. Inténtalo de nuevo.',
-      err:'Sin conexión. Verifica tu internet e inténtalo de nuevo.'
+      err:'Sin conexión. Verifica tu internet e inténtalo de nuevo.',
+      famLbl:'Tu nombre o el de tu familia', famPh:'Ej. Familia Rocha Hernández',
+      famFalta:'Escribe tu nombre o el de tu familia.',
+      famExiste:'Ya hay una invitación con ese nombre. Abre el enlace personalizado que te enviaron, o escribe tu nombre completo.',
+      notaAbierta:'¿Cuántas personas asistirán, contándote a ti? (máximo ' + TOPE_ABIERTO + ')',
+      personas:function(u){ return u === 1 ? '1 persona' : u + ' personas'; }
     },
     en:{
       para:'This invitation is for ',
@@ -3848,7 +3867,12 @@ function initScrollReveal(){
       noIdentifica:'We could not identify your invitation. Open the personal link we sent you — it is the only one that records your answer.',
       borrada:'This invitation is no longer active. Please contact the family for a new link.',
       errEnvio:'Something went wrong. Please try again.',
-      err:'No connection. Check your internet and try again.'
+      err:'No connection. Check your internet and try again.',
+      famLbl:'Your name or your family name', famPh:'e.g. Rocha Hernández Family',
+      famFalta:'Please write your name or your family name.',
+      famExiste:'There is already an invitation with that name. Open the personal link you were sent, or write your full name.',
+      notaAbierta:'How many people will attend, including you? (max ' + TOPE_ABIERTO + ')',
+      personas:function(u){ return u === 1 ? '1 person' : u + ' people'; }
     }
   };
   function L(){ return RT[window.LANG||'es'] || RT.es; }
@@ -3924,11 +3948,11 @@ function initScrollReveal(){
     contValor.textContent = pasesAUsar;
     btnMenos.disabled = cerrado || pasesAUsar <= 1;
     btnMas.disabled   = cerrado || pasesAUsar >= pasesAsignados;
-    contNota.textContent = pasesAsignados === 1 ? L().notaUno : L().notaVarios(pasesAsignados);
+    contNota.textContent = abierto ? L().notaAbierta : (pasesAsignados === 1 ? L().notaUno : L().notaVarios(pasesAsignados));
     var multi = pasesAsignados > 1;
     contBox.style.display = multi ? 'flex' : 'none';
     contPie.style.display = multi ? 'block' : 'none';
-    contPie.textContent = pasesAUsar >= pasesAsignados ? L().todos : L().dePases(pasesAUsar, pasesAsignados);
+    contPie.textContent = abierto ? L().personas(pasesAUsar) : (pasesAUsar >= pasesAsignados ? L().todos : L().dePases(pasesAUsar, pasesAsignados));
   }
 
   function setPases(n){
@@ -4004,6 +4028,7 @@ function initScrollReveal(){
   /* Cambio de idioma: se repinta TODO lo que escribio el JS */
   window.applyRsvpLang = function(){
     pintaEncabezado();
+    if (abierto) { document.getElementById('rsvp-familia-lbl').textContent = L().famLbl; familiaEl.placeholder = L().famPh; }
     if (rsvpChoice === 'yes') { pintaContador(); renderFields(pasesAUsar); }
     if (resumen) pintaGracias();
     if (avisoActual) setFeedback(avisoActual, avisoColor);
@@ -4056,13 +4081,19 @@ function initScrollReveal(){
         btnNo.disabled  = false;
       });
   } else {
-    /* Sin link personalizado no hay invitacion que actualizar */
-    confirmBtn.disabled = true;
-    setFeedback(function(){ return L().sinLink; }, ROSA);
+    /* Link general: se confirma escribiendo el nombre */
+    abiertoBox.style.display = 'block';
+    familiaEl.disabled = frozen;
+    familiaEl.addEventListener('input', function(){ this.classList.remove('rsvp-input-falta'); setFeedback(null); });
   }
 
   confirmBtn.addEventListener('click', function(){
-    if (frozen || bloqueado || (!invId && !urlPara)) return;
+    if (frozen || bloqueado) return;
+    if (abierto && !familiaEl.value.trim()) {
+      familiaEl.classList.add('rsvp-input-falta'); familiaEl.focus({ preventScroll:true });
+      setFeedback(function(){ return L().famFalta; }, ROSA); return;
+    }
+    if (!abierto && !invId && !urlPara) return;
     if (!rsvpChoice) { setFeedback(function(){ return L().elige; }, ROSA); return; }
     var nombres = [];
     if (rsvpChoice === 'yes') {
@@ -4085,6 +4116,7 @@ function initScrollReveal(){
       }
     }
     var estadoFinal = rsvpChoice === 'yes' ? 'confirmado' : 'declino';
+    if (abierto) { enviarAbierto(estadoFinal, nombres); return; }
     btnText.textContent = L().enviando;
     confirmBtn.disabled = true;
     setFeedback(null);
@@ -4129,6 +4161,65 @@ function initScrollReveal(){
       setFeedback(function(){ return L().err; }, ROSA);
     });
   });
+
+  /* Link general: si el nombre ya existe en el panel NO se envía (pisaría la
+     respuesta de otra invitación). Si no existe, el POST la crea. Después se
+     cambia la URL a su token ?i= para que al recargar funcione como link personal. */
+  function enviarAbierto(estadoFinal, nombres){
+    var familia = familiaEl.value.trim().replace(/\s+/g, ' ');
+    btnText.textContent = L().enviando;
+    confirmBtn.disabled = true;
+    setFeedback(null);
+    fetch(PANEL_API + '?nombre=' + encodeURIComponent(familia) + '&url_boda=' + encodeURIComponent(RSVP_URL))
+      .then(function(r){ return r.json(); })
+      .then(function(resp){
+        if (resp && resp.invitado) {
+          confirmBtn.disabled = false; btnText.textContent = L().confirmar;
+          familiaEl.classList.add('rsvp-input-falta');
+          setFeedback(function(){ return L().famExiste; }, ROSA);
+          return;
+        }
+        var cuantos = estadoFinal === 'confirmado' ? nombres.length : 1;
+        return fetch(PANEL_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nombre: familia,
+            url_boda: RSVP_URL,
+            estado: estadoFinal,
+            pases: cuantos,
+            pases_confirmados: estadoFinal === 'confirmado' ? nombres.length : 0,
+            nombres_confirmados: estadoFinal === 'confirmado' ? nombres : []
+          })
+        })
+        .then(function(r){ return r.json().then(function(d){ return {ok:r.ok, status:r.status, d:d}; }).catch(function(){ return {ok:r.ok, status:r.status, d:null}; }); })
+        .then(function(res){
+          confirmBtn.disabled = false;
+          if (res.ok && res.d && res.d.ok) {
+            /* Desde aquí ya es una invitación del panel: se actualiza por su nombre */
+            abierto = false; urlPara = familia; pasesAsignados = cuantos;
+            familiaEl.disabled = true;
+            try {
+              var tok = btoa(unescape(encodeURIComponent(familia + '|' + cuantos))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+              history.replaceState(null, '', location.pathname + '?i=' + tok + location.hash);
+            } catch(e) {}
+            btnText.textContent = L().actualizar;
+            mostrarGracias(estadoFinal, nombres);
+            return;
+          }
+          btnText.textContent = L().confirmar;
+          var err = res.d && res.d.error;
+          setFeedback(function(){
+            return err === 'respuestas_cerradas' || err === 'invitacion_borrada' ? L().famExiste : L().errEnvio;
+          }, ROSA);
+        });
+      })
+      .catch(function(){
+        confirmBtn.disabled = false;
+        btnText.textContent = L().confirmar;
+        setFeedback(function(){ return L().err; }, ROSA);
+      });
+  }
 })();
 
 /* ===== RESERVA ESTA FECHA — los numeros corren hasta la fecha del evento ===== */
